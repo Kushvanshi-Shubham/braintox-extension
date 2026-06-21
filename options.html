@@ -14,10 +14,7 @@
       justify-content: center;
       padding: 40px 20px;
     }
-    .container {
-      max-width: 480px;
-      width: 100%;
-    }
+    .container { max-width: 480px; width: 100%; }
     h1 {
       font-size: 24px;
       font-weight: 700;
@@ -27,96 +24,52 @@
       -webkit-text-fill-color: transparent;
       margin-bottom: 8px;
     }
-    .subtitle {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 32px;
-    }
-    .field {
-      margin-bottom: 20px;
-    }
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: 600;
-      color: #444;
-      margin-bottom: 6px;
-    }
+    .subtitle { font-size: 14px; color: #666; margin-bottom: 32px; }
+    .field { margin-bottom: 20px; }
+    label { display: block; font-size: 13px; font-weight: 600; color: #444; margin-bottom: 6px; }
     input {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1px solid #e0dce8;
-      border-radius: 12px;
-      font-size: 14px;
-      background: white;
-      color: #1a1a2e;
-      outline: none;
-      transition: border-color 0.2s;
+      width: 100%; padding: 10px 14px; border: 1px solid #e0dce8; border-radius: 12px;
+      font-size: 14px; background: white; color: #1a1a2e; outline: none; transition: border-color 0.2s;
     }
-    input:focus {
-      border-color: #9333ea;
-      box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1);
-    }
-    .help {
-      font-size: 12px;
-      color: #888;
-      margin-top: 4px;
-      line-height: 1.5;
-    }
+    input:focus { border-color: #9333ea; box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.1); }
+    .help { font-size: 12px; color: #888; margin-top: 4px; line-height: 1.5; }
     .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      background: linear-gradient(135deg, #9333ea, #ec4899);
-      color: white;
-      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3);
-      transition: all 0.2s;
-      margin-top: 8px;
+      display: flex; align-items: center; justify-content: center; width: 100%; padding: 12px;
+      border: none; border-radius: 12px; font-size: 15px; font-weight: 600; cursor: pointer;
+      background: linear-gradient(135deg, #9333ea, #ec4899); color: white;
+      box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3); transition: all 0.2s; margin-top: 8px;
     }
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(147, 51, 234, 0.4);
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(147, 51, 234, 0.4); }
+    .btn-secondary {
+      background: #f0eef5; color: #7c3aed; box-shadow: none; margin-top: 24px;
     }
+    .btn-secondary:hover { background: #ede9fe; box-shadow: none; }
     .saved {
-      text-align: center;
-      font-size: 14px;
-      color: #059669;
-      font-weight: 600;
-      margin-top: 12px;
-      opacity: 0;
-      transition: opacity 0.3s;
+      text-align: center; font-size: 14px; color: #059669; font-weight: 600;
+      margin-top: 12px; opacity: 0; transition: opacity 0.3s;
     }
     .saved.show { opacity: 1; }
+    .status { font-size: 13px; color: #666; margin-bottom: 24px; }
+    .status b { color: #1a1a2e; }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>⚙️ Braintox Settings</h1>
-    <p class="subtitle">Configure your Braintox connection</p>
+    <p class="subtitle">You sign in from the extension popup — no tokens to paste.</p>
+
+    <p class="status" id="status">Status: <b id="status-value">checking…</b></p>
 
     <div class="field">
       <label for="api-url">API URL</label>
-      <input type="text" id="api-url" placeholder="http://localhost:3000" value="http://localhost:3000">
-      <p class="help">Your Braintox backend server URL. Default: http://localhost:3000</p>
+      <input type="text" id="api-url" placeholder="https://braintox-be.onrender.com">
+      <p class="help">Your Braintox backend. Leave as the default unless you're running your own server.</p>
     </div>
 
-    <div class="field">
-      <label for="auth-token">Auth Token (JWT)</label>
-      <input type="password" id="auth-token" placeholder="Paste your token here">
-      <p class="help">
-        Get your token: Log in to Braintox → Open browser DevTools (F12) → Console → type: <code>localStorage.getItem("token")</code>
-      </p>
-    </div>
+    <button class="btn" id="save-btn">Save</button>
+    <div class="saved" id="saved-msg">✓ Saved</div>
 
-    <button class="btn" id="save-btn">Save Settings</button>
-    <div class="saved" id="saved-msg">✓ Settings saved!</div>
+    <button class="btn btn-secondary" id="signout-btn">Sign out</button>
   </div>
 
   <script src="options.js"></script>

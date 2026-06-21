@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Braintox - Save to Brain",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Save any webpage to your Braintox knowledge base with one click. AI-powered auto-tagging included.",
   "permissions": ["activeTab", "storage"],
   "action": {
